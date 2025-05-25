@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안효준의 지원사업 공고 알리미</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; color: #333; }
+        h1 { text-align: center; color: #2c3e50; }
+        .announcement {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .announcement h2 { margin-top: 0; font-size: 1.3em; color: #3498db; }
+        .announcement p { margin-bottom: 8px; line-height: 1.6; }
+        .announcement a { color: #2980b9; text-decoration: none; font-weight: bold; }
+        .announcement a:hover { text-decoration: underline; }
+        #loading, #error, #info {
+            text-align: center;
+            font-size: 1.1em;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        #loading { color: #3498db; }
+        #error { background-color: #fdecea; color: #c0392b; font-weight: bold; padding: 10px; border: 1px solid #c0392b;}
+        #info { background-color: #e8f4fd; color: #2980b9; }
+        .raw-response-container { /* 디버깅용 원본 응답 컨테이너 스타일 */
+            margin-top: 20px;
+            padding:10px;
+            border: 1px dashed #ccc;
+            background-color: #f0f0f0;
+        }
+        .raw-response-container h3 { margin-top:0;}
+        .raw-response-content {
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>안효준의 지원사업 공고 알리미</h1>
+
+    <div id="loading">최신 지원사업 공고 10개를 불러오는 중입니다...</div>
+    <div id="error" style="display:none;"></div>
+    <div id="info" style="display:none;"></div>
+    <div id="announcements-container">
+        <!-- 공고 내용이 여기에 동적으로 추가됩니다. -->
+    </div>
+
+    <!-- 개발/디버깅 시 원본 API 응답을 보기 위한 영역 (평소에는 주석 처리 가능) -->
+    <div id="raw-response-container" style="display:none;">
+        <h3>API 원본 응답 내용:</h3>
+        <pre id="raw-response-content" class="raw-response-content"></pre>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKey = "NJ1g56";
+            const apiUrl = `https://www.bizinfo.go.kr/uss/rss/bizinfoApi.do?crtfcKey=${apiKey}&dataType=json&searchCnt=10`;
+
+            const container = document.getElementById('announcements-container');
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            const infoDiv = document.getElementById('info');
+            const rawResponseContainer = document.getElementById('raw-response-container');
+            const rawResponseContent = document.getElementById('raw-response-content');
+
+            errorDiv.style.display = 'none';
+            infoDiv.style.display = 'none';
+            // rawResponseContainer.style.display = 'none'; // 필요시 주석 해제하여 원본 응답 확인
+
+            console.log("API 요청 시작:", apiUrl);
+
+            fetch(apiUrl)
+                .then(response => {
+                    console.log("API 응답 수신. 상태 코드:", response.status);
+                    console.log("API 응답 헤더 Content-Type:", response.headers.get('Content-Type'));
+
+                    return response.text().then(text => {
+                        // console.log("API 원본 응답 (텍스트):", text); // 디버깅 시 콘솔에 원본 텍스트 출력
+                        // rawResponseContent.textContent = text; // 화면에도 원본 텍스트 표시
+                        // rawResponseContainer.style.display = 'block'; // 디버깅 시 원본 응답 화면 표시
+
+                        if (!response.ok) {
+                            throw new Error(`API 요청 실패: ${response.status} ${response.statusText}. 서버 응답: ${text}`);
+                        }
+                        return text;
+                    });
+                })
+                .then(textData => {
+                    let data;
+                    try {
+                        data = JSON.parse(textData);
+                        console.log("JSON 파싱 성공:", data);
+                    } catch (e) {
+                        console.error("JSON 파싱 오류:", e);
+                        console.error("파싱하려던 텍스트:", textData);
+                        errorDiv.innerHTML = `수신된 데이터가 유효한 JSON 형식이 아닙니다. <br>JSON 파싱 오류: ${e.message}. <br>개발자 콘솔을 확인해주세요.`;
+                        errorDiv.style.display = 'block';
+                        loadingDiv.style.display = 'none';
+                        return;
+                    }
+
+                    loadingDiv.style.display = 'none';
+
+                    // *** 중요 변경 지점 ***
+                    // API 응답 구조에 맞춰 data.jsonArray를 사용
+                    const announcements = data.jsonArray;
+
+                    if (!announcements) { // jsonArray 자체가 없는 경우
+                        console.error("API 응답 형식이 예상과 다릅니다. 'jsonArray' 배열이 응답에 없습니다.", data);
+                        errorDiv.textContent = "수신된 데이터의 JSON 구조가 올바르지 않습니다. 'jsonArray'를 찾을 수 없습니다. 개발자 콘솔을 확인해주세요.";
+                        errorDiv.style.display = 'block';
+                        return;
+                    }
+
+                    // resultCode 같은 별도 상태 코드가 없으므로, HTTP 상태와 announcements 유무로 판단
+                    console.log("추출된 공고 목록:", announcements);
+
+                    if (announcements.length === 0) {
+                        infoDiv.style.display = 'block';
+                        // totCnt가 모든 아이템에 있으므로, 첫번째 아이템의 totCnt를 참고하거나 length로 판단
+                        let totalReportedCount = 0;
+                        if(announcements.length > 0 && announcements[0].totCnt) {
+                            totalReportedCount = announcements[0].totCnt;
+                        }
+
+                        if (totalReportedCount === 0) {
+                            infoDiv.textContent = '현재 API에서 제공하는 새로운 지원사업 공고가 없습니다 (전체 0건 보고됨).';
+                        } else {
+                             infoDiv.textContent = '최신 지원사업 공고 목록이 비어 있습니다. 현재 등록된 공고가 없을 수 있습니다.';
+                        }
+                        console.warn("공고 목록(jsonArray)이 비어있습니다.");
+                        return;
+                    }
+
+                    announcements.forEach(item => {
+                        const announcementDiv = document.createElement('div');
+                        announcementDiv.className = 'announcement';
+
+                        const title = document.createElement('h2');
+                        const link = document.createElement('a');
+                        // API 응답 필드명 확인: pblancUrl, pblancNm
+                        link.href = item.pblancUrl ? `https://www.bizinfo.go.kr${item.pblancUrl}` : '#';
+                        link.textContent = item.pblancNm || '제목 없음';
+                        link.target = '_blank';
+                        title.appendChild(link);
+
+                        const summary = document.createElement('p');
+                        // API 응답 필드명 확인: bsnsSumryCn
+                        // HTML 태그가 포함되어 있으므로 innerHTML로 설정 (XSS 주의, 하지만 이 경우는 신뢰할 수 있는 소스)
+                        summary.innerHTML = `<b>사업 개요:</b> ${item.bsnsSumryCn || '내용 없음'}`;
+
+
+                        let dateInfo = '날짜 정보 없음';
+                        // API 응답 필드명 확인: creatPnttm (등록일), reqstBeginEndDe (접수기간)
+                        if (item.creatPnttm) {
+                            dateInfo = `등록일: ${item.creatPnttm}`;
+                        } else if (item.reqstBeginEndDe) {
+                            dateInfo = `접수 기간: ${item.reqstBeginEndDe.replace(/(\d{4})(\d{2})(\d{2})\s*~\s*(\d{4})(\d{2})(\d{2})/, '$1-$2-$3 ~ $4-$5-$6')}`; // 날짜 형식 변경
+                        }
+                        const dateP = document.createElement('p');
+                        dateP.innerHTML = `<b>${dateInfo}</b>`;
+
+
+                        const organization = document.createElement('p');
+                        // API 응답 필드명 확인: jrsdInsttNm (주관기관), excInsttNm (수행기관)
+                        let orgText = '';
+                        if(item.jrsdInsttNm) orgText += `주관기관: ${item.jrsdInsttNm}`;
+                        if(item.excInsttNm) {
+                            if(orgText) orgText += ` / `;
+                            orgText += `수행기관: ${item.excInsttNm}`;
+                        }
+                        organization.textContent = orgText || '기관 정보 없음';
+
+
+                        announcementDiv.appendChild(title);
+                        announcementDiv.appendChild(summary);
+                        announcementDiv.appendChild(dateP);
+                        announcementDiv.appendChild(organization);
+
+                        container.appendChild(announcementDiv);
+                    });
+                })
+                .catch(error => {
+                    loadingDiv.style.display = 'none';
+                    errorDiv.style.display = 'block';
+                    errorDiv.innerHTML = `데이터를 불러오는 중 오류가 발생했습니다: ${error.message}<br>API 키, 네트워크 연결, 또는 API 서버 상태를 확인해주세요. <br>개발자 콘솔에서 자세한 내용을 확인하세요.`;
+                    console.error('Fetch 또는 데이터 처리 중 심각한 오류 발생:', error);
+                });
+        });
+    </script>
+
+</body>
+</html>
