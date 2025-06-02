@@ -1,4 +1,4 @@
-# WindyFlo Quickstart
+# ⚡ WindyFlo Quickstart
 
 WindyFlo is a visual platform for building and testing AI pipelines — from prompt chaining to model orchestration.
 

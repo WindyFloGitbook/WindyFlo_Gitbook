@@ -4,11 +4,9 @@
 
 ## Getting Started
 
-***
-
 * [😘 WindyFlo Setting](windyflo-setting.md)
-* [WindyFlo Quickstart](windyflo-quickstart.md)
-* [WindyFlo Tutorial](windyflo-tutorial.md)
+* [⚡ WindyFlo Quickstart](windyflo-quickstart.md)
+* [🌐 WindyFlo Tutorial](windyflo-tutorial.md)
 * [✨ How to Chatbot Share](how-to-chatbot-share.md)
 * [Quickstart](quickstart.md)
 
