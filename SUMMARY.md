@@ -7,7 +7,7 @@
 * [😘 WindyFlo Setting](windyflo-setting.md)
 * [⚡ WindyFlo Quickstart](windyflo-quickstart.md)
 * [🌐 WindyFlo Tutorial](windyflo-tutorial.md)
-* [✨ How to Chatbot Share](how-to-chatbot-share.md)
+* [✨ Pipeline Deplyment](how-to-chatbot-share.md)
 
 ## Node Documentation
 

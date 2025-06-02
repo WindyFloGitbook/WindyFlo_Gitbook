@@ -1,118 +1,117 @@
 # 🌐 WindyFlo Tutorial
 
-WindyFlo의 가장 큰 장점 중 하나는 **노드를 드래그앤드롭해 연결함으로써 AI 워크플로우, 시스템을 시작적으로 만들 수** 있다는 점입니다. 복잡한 설정이나 준비 없이 AI 파이프라인 구축을 시작해 보세요!
-
-이 가이드에서는 WindyFlo를 사용하여 첫 AI 파이프라인을 만들고 실행하는 기본적인 단계를 안내합니다.
+One of WindyFlo's greatest strengths is the ability to visually create AI workflows and systems by dragging, dropping, and connecting nodes. Start building your AI pipeline without complex setups or preparations!\
+This guide will walk you through the basic steps to create and run your first AI pipeline using WindyFlo.
 
 <figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-hero.png" alt=""><figcaption></figcaption></figure>
 
-**사전 준비:**
+### Prerequisites
 
-* WindyFlo 계정이 필요합니다. 아직 없다면 [WindyFlo 설정](windyflo-setting.md) 가이드를 참고하여 계정을 생성하고 로그인해주세요.
-* **OpenAI API 키:** 이 예제에서는 OpenAI 모델을 사용합니다. 작동을 위해서는 본인의 OpenAI API 키가 필요합니다. (유료 플랜 사용자는 WindyFlo에서 제공하는 API KEY를 사용할 수도 있습니다. 자격증명(Credentials) 가이드 참조)
+* **WindyFlo Account:** You'll need a WindyFlo account. If you don't have one yet, please refer to the WindyFlo Setup Guide to create an account and log in.
+* **OpenAI API Key:** This example uses an OpenAI model. You will need your own OpenAI API key for it to work. (Paid plan users can also use the API KEY provided by WindyFlo. See the Credentials guide.)
 
 {% hint style="info" %}
-OpenAI API 키가 무엇이고 어떻게 얻는지 잘 모르겠다면 \[여기 가이드]를 참고하세요.
+If you're unsure what an OpenAI API key is or how to get one, refer to \[**this guide**]
 {% endhint %}
 
-### 1단계: 새 파이프라인 생성
+### Step 1: Create a New Pipeline
 
-1. WindyFlo에 로그인합니다.
-2. `내 파이프라인` 버튼을 클릭합니다.
-3. `Create Pipeline` 버튼을 클릭합니다.
-4. **파이프라인 이름**을 입력합니다 (예: `MyFirstChatbot`).
-5. (필수사항) 설명과 태그를 추가합니다.
-6. `AI 모델 파이프라인 생성` 버튼을 클릭합니다. 빈 워크스페이스(캔버스)가 열립니다.
+1. Log in to WindyFlo.
+2. Click the "My Pipelines" button.
+3. Click the "Create Pipeline" button.
+4. Enter a name for your pipeline (e.g., `MyFirstChatbot`).
+5. (Required) Add a description and tags.
+6. Click the "Create AI Model Pipeline" button. An empty workspace (canvas) will open.
 
 <div data-full-width="false"><figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption></figcaption></figure></div>
 
-### 2단계: 노드 추가 및 연결
+### Step 2: Add and Connect Nodes
 
-이제 대화형 챗봇의 핵심 구성 요소들을 추가하고 연결합니다.
+Now, let's add and connect the core components of an interactive chatbot.
 
-1. 화면 좌측 상단의 `노드 추가` 버튼을 클릭합니다.\
-   \- 윈디플로에서 제공하는 노드 리스트 : [https://www.windyflo.com/node-library](https://www.windyflo.com/node-library)
-2. **chat models** 카테고리에서 `ChatOpenAI` 노드를 찾아 캔버스로 드래그 앤 드롭합니다. (챗봇의 두뇌 역할)
-3. `노드 추가`를 다시 클릭하고, **Memory** 카테고리에서 `Buffer Memory` 노드를 캔버스로 드래그합니다. (대화 기억 역할)
-4. 다시 `노드 추가`를 클릭하고, **Chains** 카테고리에서 `Conversation Chain` 노드를 캔버스로 드래그합니다. (chat mdel과 Memory 흐름 관리)
-5. **노드 연결:** (아래 이미지와 같이 연결합니다)
-   * `ChatOpenAI` 노드의 오른쪽 출력 포트 (`ChatOpenAI`)를 `Conversation Chain` 노드의 왼쪽 입력 포트 (`Chat Model`)로 연결합니다.
-   * `Buffer Memory` 노드의 오른쪽 출력 포트 (`BufferMemory`)를 `Conversation Chain` 노드의 왼쪽 입력 포트 (`Memory`)로 연결합니다.
+1. Click the "Add Node" button in the top-left corner of the screen.
+   * WindyFlo's Node Library: [https://www.windyflo.com/node-library](https://www.windyflo.com/node-library)
+2. From the `Chat Models` category, find the `ChatOpenAI` node and drag and drop it onto the canvas. (This acts as the chatbot's brain).
+3. Click "Add Node" again, and from the `Memory` category, drag the `Buffer Memory` node onto the canvas. (This remembers the conversation).
+4. Click "Add Node" once more, and from the `Chains` category, drag the `Conversation Chain` node onto the canvas. (This manages the flow between the chat model and memory).
+5. **Connect the Nodes:** (Connect them as shown in the image below - _assuming an image would be here in the original document_)
+   * Connect the right output port (`ChatOpenAI`) of the `ChatOpenAI` node to the left input port (`Chat Model`) of the `Conversation Chain` node.
+   * Connect the right output port (`BufferMemory`) of the `Buffer Memory` node to the left input port (`Memory`) of the `Conversation Chain` node.
 
 <figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption><p><em>챗봇의 기본 파이프라인</em></p></figcaption></figure>
 
-### 3단계: ChatOpenAI 노드 설정 (API 키 및 모델)
+### Step 3: Configure the ChatOpenAI Node (API Key and Model)
 
-`ChatOpenAI` 노드가 실제로 작동하려면 OpenAI API 키를 연결하고 모델을 선택해야 합니다.
+For the `ChatOpenAI` node to function, you need to connect your OpenAI API key and select a model.
 
-1. 캔버스 위의 `ChatOpenAI` 노드를 클릭합니다. 화면 오른쪽에 설정 패널이 나타납니다.
-2. **Connect Credential** 섹션에서 드롭다운 메뉴를 클릭하고 `Create New`를 선택하여 **본인의 OpenAI API 키**를 입력하고 저장합니다. (이미 저장된 키가 있다면 선택합니다.)
-3. **Model Name** 섹션에서 드롭다운 메뉴를 클릭하고 사용 가능한 다른 모델을 선택합니다.
-4. (선택 사항) `Temperature` 값을 조정할 수 있습니다.
+1. Click the `ChatOpenAI` node on the canvas. The settings panel will appear on the right side of the screen.
+2. In the `Connect Credential` section, click the dropdown menu and select "Create New" to enter and save your OpenAI API key. (If you have an already saved key, select it.)
+3. In the `Model Name` section, click the dropdown menu and select a different available model if desired.
+4. (Optional) Adjust the `Temperature` value.
 
 {% hint style="info" %}
 ```
-Temperature는 모델 답변의 창의성 또는 무작위성을 조절하는 값입니다.\
-\* 낮은 값 (0에 가까울수록): 더 일관성 있고 예측 가능한 답변을 생성합니다. (사실 정보 전달에 적합)\
-\* 높은 값 (1에 가까울수록): 더 다양하고 창의적인 답변을 생성합니다. (아이디어 구상, 이야기 만들기에 적합)\
-기본값은 보통 0.7\~0.9 사이이며, 필요에 따라 조절하여 원하는 답변 스타일을 얻을 수 있습니다.
+ *   `Temperature` controls the creativity or randomness of the model's responses.
+        *   **Lower values (closer to 0):** Produce more consistent and predictable answers. (Suitable for factual information).
+        *   **Higher values (closer to 1):** Generate more diverse and creative answers. (Suitable for brainstorming, storytelling).
+    *   The default value is usually between 0.7 and 0.9. Adjust it as needed to achieve your desired response style.
 ```
 {% endhint %}
 
-5\. \`Buffer Memory\`와 \`Conversation Chain\` 노드는 이 기본 예제에서는 추가 설정 없이 연결만으로도 작동합니다.
+5. The `Buffer Memory` and `Conversation Chain` nodes will work with just the connections in this basic example, without additional configuration.
 
-### 4단계: 저장 및 테스트 실행
+### Step 4: Save and Test Run
 
-이제 파이프라인을 저장하고, 챗봇을 테스트 합니다.
+Now, save the pipeline and test your chatbot.
 
-1. 화면 우측 상단의 `저장` 버튼을 클릭하여 파이프라인을 저장합니다.
-2. 저장 버튼 옆의 **실행** 버튼을 클릭하여 테스트 채팅창을 엽니다.
-3. **첫 번째 질문 (정보 주기):** 채팅창에 "내 이름은 WindyFlo야." 라고 입력하고 엔터를 누릅니다. 챗봇의 응답을확인합니다. (예: "안녕하세요, WindyFlo!").
-4. **두 번째 질문 (기억 확인):** 이어서 채팅창에 "내 이름이 뭐야?" 라고 입력하고 보내기를 누릅니다.
-5. 챗봇이 "당신의 이름은 WindyFlo입니다." 와 같이 **이전 대화에서 알려준 이름을 기억하고** 답변하는지 확인합니다. 이렇게 `Buffer Memory`와 `Conversation Chain`이 정상 작동 하는지 확인 합니다.
+1. Click the "Save" button in the top-right corner of the screen to save your pipeline.
+2. Click the "Run" button next to the Save button to open the test chat window.
+3. **First Question (Provide Information):** In the chat window, type "My name is WindyFlo." and press Enter. Observe the chatbot's response (e.g., "Hello, WindyFlo!").
+4. **Second Question (Check Memory):** Subsequently, type "What is my name?" in the chat window and send it.
+5. Verify that the chatbot remembers the name you provided in the previous turn and responds accordingly, e.g., "Your name is WindyFlo." This confirms that `Buffer Memory` and `Conversation Chain` are working correctly.
 
 <figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption><p><em>챗봇 저장 및 테스트</em></p></figcaption></figure>
 
-### 5단계: 다른 사람과 함께 AI 파이프라인 만들기(Private 유저 이상 사용 가능)
+### Step 5: Collaborating on AI Pipelines (Available for Private Users and Above)
 
-윈디플로에서는 협업 기능을 통해 팀원과 함께 AI 파이프라인을 공동 제작할 수 있습니다.
+WindyFlo allows you to co-create AI pipelines with team members through its collaboration features.
 
-1. **MY Pipeline 클릭**\
-   상단 네비게이션 메뉴에서 **MY Pipeline**을 클릭합니다.
-2. **팀원 추가**\
-   MY Pipeline 화면 상단에서 **팀원 추가** 버튼을 클릭합니다.
-3. **이메일 및 권한 입력**\
-   초대할 팀원의 이메일 주소와 권한을 선택한 뒤, **Send Invitation** 버튼을 클릭합니다.
-   * 초대가 완료되면 화면 상단에 팀원 아이콘이 표시됩니다.
-4. **협업 파이프라인 선택**\
-   **MY Pipeline** 화면 오른쪽의 **Team** 버튼을 클릭하고, 협업할 파이프라인을 선택합니다.
-5. **협업 워크스페이스 접속**\
-   선택한 파이프라인의 워크스페이스에 접속하면, 상단에 협업 중인 팀원의 아이콘이 표시됩니다.
+1. **Click MY Pipeline:**
+   * Click on "MY Pipeline" in the top navigation menu.
+2. **Add Team Members:**
+   * At the top of the MY Pipeline screen, click the "Add Team Members" button.
+3. **Enter Email and Permissions:**
+   * Enter the email address of the team member you want to invite, select their permissions, and then click the "Send Invitation" button.
+   * Once the invitation is accepted, the team member's icon will appear at the top of the screen.
+4. **Select a Collaborative Pipeline:**
+   * On the MY Pipeline screen, click the "Team" button on the right and select the pipeline you want to collaborate on.
+5. **Access Collaborative Workspace:**
+   * When you access the workspace of the selected pipeline, the icons of collaborating team members will be displayed at the top.
+6. **Collaboration Method:**
+   * Each team member can directly add or modify nodes.
+   * Changes are reflected in real-time, enabling seamless collaboration.
 
-#### 협업 방식
+### Step 6: (Optional) Share as a Chatbot
 
-* 각 팀원이 **노드를 직접 추가하거나 수정**할 수 있습니다.
-* 변경 사항은 **실시간으로 반영**되며, 유기적인 협업이 가능합니다.
+You can easily share the interactive chatbot you've created with others.
 
-### 6단계: (선택 사항) 챗봇으로 공유하기
-
-만든 대화형 챗봇을 다른 사람과 쉽게 공유할 수 있습니다.
-
-1. 우측 상단의 `API로 삽입` 버튼을 클릭합니다.
-2. `Share Chatbot` 탭을 선택합니다.
-3. 필요하면 챗봇 제목이나 환영 메시지를 수정하고 `Save Changes`버튼을 눌러 저장 합니다.
-4. 상단에생성된 **공유 URL**을 복사합니다.
-5. 이 URL을 통해 다른 사람도 당신이 만든, 대화를 기억하는 챗봇과 이야기할 수 있습니다.
+1. Click the "Embed as API" button in the top-right corner.
+2. Select the "Share Chatbot" tab.
+3. If necessary, modify the chatbot title or welcome message and click the "Save Changes" button.
+4. Copy the share URL generated at the top.
+5. Through this URL, others can also interact with the conversation-aware chatbot you built.
 
 <figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption><p><em>챗봇 공유하기</em></p></figcaption></figure>
 
 ***
 
-**축하합니다!** 🎉 대화 내용을 기억하는 좀 더 스마트한 나만의 챗봇을 성공적으로 만들었습니다.
+### Congratulations!
 
-이처럼 WindyFlo는 다양한 노드를 조합하여 복잡한 AI 기능도 쉽게 구현할 수 있도록 돕습니다. 더 많은 기능을 탐색하려면 다음 문서들을 살펴보세요:
+🎉 You have successfully created your own smarter chatbot that remembers conversation context.
 
-* **핵심 개념:** 파이프라인, 노드, 체인, 메모리 등 주요 개념을 더 깊이 이해합니다.
-* **노드 라이브러리:** 사용 가능한 모든 노드들의 상세 기능과 설정을 알아봅니다.
-* **Embed as API** : 완성한 AI 파이프라인을 Embed as API 기능으로 손쉽게 외부 서비스에 연결해보세요.
-* **튜토리얼:** 문서 기반 Q\&A 봇, MCP를 활용한 에이전트 만들기 등 특정 활용 사례 가이드를 따릅니다.
+Just like this, WindyFlo helps you easily implement complex AI functionalities by combining various nodes. To explore more features, check out the following documents:
+
+* **Core Concepts:** Gain a deeper understanding of key concepts like Pipelines, Nodes, Chains, and Memory.
+* **Node Library:** Discover the detailed functions and settings of all available nodes.
+* **Embed as API:** Easily connect your completed AI pipeline to external services using the Embed as API feature.
+* **Tutorials:** Follow specific use case guides, such as building a document-based Q\&A bot or creating an agent using MCP.
