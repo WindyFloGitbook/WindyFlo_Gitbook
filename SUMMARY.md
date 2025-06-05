@@ -173,13 +173,6 @@
     * [SQLite Record Manager](node-documentation/langchain/record-manager/sqlite-record-manager.md)
 * [Llamaindex](node-documentation/llamaindex.md)
 
-## Group 1
+## MCP
 
-* [Page](group-1/page.md)
-* [Integrations](group-1/integrations.md)
-* [OpenAPI](group-1/openapi.md)
-* [Interactive blocks](group-1/interactive-blocks.md)
-* [Images & media](group-1/images-and-media.md)
-* [Page 1](group-1/page-1/README.md)
-  * [Editor](group-1/page-1/editor.md)
-  * [Markdown](group-1/page-1/markdown.md)
+* [WindyFlo – Zapier MCP Server Integration Guide](mcp/windyflo-zapier-mcp-server-integration-guide.md)
