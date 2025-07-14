@@ -2,20 +2,6 @@
 icon: hand-wave
 cover: .gitbook/assets/複雑なコーディングは不要 (1).png
 coverY: 0
-layout:
-  cover:
-    visible: true
-    size: full
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # Welcome to WindyFlo
@@ -44,3 +30,7 @@ WindyFlo is ideal for developers looking to rapidly prototype and deploy AI func
 ### Getting Started
 
 This documentation will guide you through creating your first pipeline, understanding the available nodes, and deploying your AI applications. Check out the Quick Start guide or explore the core concepts to unlock the potential of AI together.
+
+
+
+This landing page was created with the support of the Global Startup Commercialization Support Project of the Gyeonggi-do Economic Science Promotion Agency.
