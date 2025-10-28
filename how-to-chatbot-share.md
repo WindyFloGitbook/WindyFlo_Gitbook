@@ -112,4 +112,4 @@ If you need to protect your pipeline API, you can set up API key-based authentic
 
 ***
 
-You can now effectively deploy your WindyFlo pipeline for various purposes using the diverse options provided through the **'Embed as API'** feature.
+You can now effectively deploy your WindyFlo pipeline for various purposes using the diverse options provided through the **'Embed as API'** feature..
