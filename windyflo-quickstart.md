@@ -181,3 +181,4 @@ Let me now export this into a Word and PDF format for you.
 
 📄 Download WindyFlo\_Quickstart\_EN\_Full.docx
 
+Let me know if you’d like a PDF version as well or want help embedding this into GitBook or your website.
