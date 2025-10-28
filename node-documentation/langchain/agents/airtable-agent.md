@@ -8,7 +8,7 @@
 * “CRM에 등록된 고객들의 연락처를 알려줘.”
 * “지난주에 추가된 모든 레코드의 요약을 알려줘.”
 
-Airtable Agent는 단순히 데이터를 불러오는 수준을 넘어, **LLM을 통해 데이터를 이해하고 요약**해주기 때문에 비개발자도 직관적으로 데이터를 활용할 수 있습니다.
+Airtable Agent는 단순히 데이터를 불러오는 수준을 넘어, **LLM을 통해 데이터를 이해하고 요약**해주기 때문에 비 개발자도 직관적으로 데이터를 활용할 수 있습니다.
 
 <figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>WindyFlo Airtable Agent</p></figcaption></figure>
 
