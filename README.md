@@ -30,7 +30,3 @@ WindyFlo is ideal for developers looking to rapidly prototype and deploy AI func
 ### Getting Started
 
 This documentation will guide you through creating your first pipeline, understanding the available nodes, and deploying your AI applications. Check out the Quick Start guide or explore the core concepts to unlock the potential of AI together.
-
-
-
-This landing page was created with the support of the Global Startup Commercialization Support Project of the Gyeonggi-do Economic Science Promotion Agency.
