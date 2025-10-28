@@ -101,7 +101,7 @@ You can easily share the interactive chatbot you've created with others.
 4. Copy the share URL generated at the top.
 5. Through this URL, others can also interact with the conversation-aware chatbot you built.
 
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption><p><em>챗봇 공유하기</em></p></figcaption></figure>
+<figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption><p>S<em>hare as a Chatbot</em></p></figcaption></figure>
 
 ***
 
