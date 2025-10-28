@@ -27,3 +27,5 @@ If you have successfully logged in, you are all set! You are now ready to use Wi
 
 ### Next Steps
 
+Now that you're ready to use WindyFlo, it's time to experience its powerful features firsthand.\
+As a next step, follow the Quickstart guide to create your first AI pipeline!
