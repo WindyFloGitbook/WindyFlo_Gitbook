@@ -2,7 +2,7 @@
 
 ### Cloud-Based SaaS Platform
 
-WindyFlo is designed as a cloud-based Software as a Service (SaaS) platform, eliminating the need to download or install any software on your computer or server.\
+WindyFlo is designed as a cloud-based Software as a Service (SaaS) platform, eliminating the need to download or install any software on your computer or server.\
 Without complex installation processes or environment configurations, you can access WindyFlo from anywhere with just a web browser and start building AI pipelines immediately.
 
 ### System Requirements
@@ -27,5 +27,3 @@ If you have successfully logged in, you are all set! You are now ready to use Wi
 
 ### Next Steps
 
-Now that you're ready to use WindyFlo, it's time to experience its powerful features firsthand.\
-As a next step, follow the Quickstart guide to create your first AI pipeline!
