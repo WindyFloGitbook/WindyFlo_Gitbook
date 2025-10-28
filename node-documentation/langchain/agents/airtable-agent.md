@@ -1,34 +1,34 @@
 # Airtable Agent
 
-**Airtable Agent 노드**는 WindyFlo에서 Airtable에 저장된 데이터를 질의하고, 그 결과를 자연어로 받아볼 수 있도록 설계된 에이전트입니다. 복잡한 인터페이스 없이, 단순한 질문으로 필요한 정보를 대화형으로 얻을 수 있으며, 다양한 자동화 시나리오에서 유용하게 활용됩니다.
+**The Airtable Agent** node is an agent designed in WindyFlo to query data stored in Airtable and receive results in natural language. Without a complex interface, you can obtain necessary information interactively through simple questions, and it's useful in various automation scenarios.
 
-예를 들어, 다음과 같은 질문을 처리할 수 있습니다:
+For example, it can handle questions like these:
 
-* “내 프로젝트 트래커 테이블에서 아직 완료되지 않은 작업이 몇 개인가요?”
-* “CRM에 등록된 고객들의 연락처를 알려줘.”
-* “지난주에 추가된 모든 레코드의 요약을 알려줘.”
+* “How many incomplete tasks are there in my project tracker table?”
+* “Tell me the contact information of customers registered in the CRM.”
+* “Give me a summary of all records added last week.”
 
-Airtable Agent는 단순히 데이터를 불러오는 수준을 넘어, **LLM을 통해 데이터를 이해하고 요약**해주기 때문에 비 개발자도 직관적으로 데이터를 활용할 수 있습니다.
+The Airtable Agent goes beyond simply fetching data - **it understands and summarizes data through LLM**, so even non-developers can intuitively utilize the data.
 
 <figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>WindyFlo Airtable Agent</p></figcaption></figure>
 
-### 입력값 (Inputs)
+### Inputs
 
-| 항목                        | 설명                                                                                                                               | 필수 여부 |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| **Language Model**        | ChatModel 연결 (예: GPT, Claude 등). 질의 분석 및 응답 생성에 사용됩니다.                                                                           | 필수    |
-| **Input Moderation**      | 부적절한 질문을 자동 필터링할지 여부.                                                                                                            | 선택    |
-| **Connect Credential**    | Airtable 연결용 API 키 등 인증 정보.                                                                                                      | 필수    |
-| **Base ID**               | <p>Airtable Base의 고유 ID.<br>예시 URL: <code>https://airtable.com/app11RobdGoX0YNsC/...</code> → <code>app11RobdGoX0YNsC</code></p> | 필수    |
-| **Table ID**              | <p>Airtable Table의 고유 ID.<br>예시 URL: <code>.../tblJdmvbrgizbYlCO/...</code> → <code>tblJdmvbrgizbYlCO</code></p>                 | 필수    |
-| **Additional Parameters** | JSON 형식의 세부 설정값.                                                                                                                 | 선택    |
-| **Return All**            | 테이블의 모든 레코드를 가져올지 여부.                                                                                                            | 선택    |
-| **Limit**                 | 최대 조회 수 (기본값: 100). Return All이 꺼져 있을 때만 적용됩니다.                                                                                  | 선택    |
+| Item                      | Description                                                                                                                         | Required |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Language Model**        | ChatModel connection (e.g., GPT, Claude, etc.). Used for query analysis and response generation.                                    | Required |
+| **Input Moderation**      | Whether to automatically filter inappropriate questions.                                                                            | Optional |
+| **Connect Credential**    | Authentication information such as API key for Airtable connection.                                                                 | Required |
+| **Base ID**               | Unique ID of the Airtable Base. Example URL: `https://airtable.com/app11RobdGoX0YNsC/...` → `app11RobdGoX0YNsC`                     | Required |
+| **Table ID**              | <p>Unique ID of the Airtable Table. </p><p>Example URL: <code>.../tblJdmvbrgizbYlCO/...</code> → <code>tblJdmvbrgizbYlCO</code></p> | Required |
+| **Additional Parameters** | Detailed configuration values in JSON format.                                                                                       | Optional |
+| **Return All**            | Whether to retrieve all records from the table.                                                                                     | Optional |
+| **Limit**                 | Maximum number of records (default: 100). Applied only when Return All is turned off.                                               | Optional |
 
-### 활용 예시
+### Use Cases
 
-| 사용 시나리오    | 예시                      |
-| ---------- | ----------------------- |
-| **업무 자동화** | "오늘 마감인 작업만 보여줘"        |
-| **CRM 질의** | "서울에 거주 중인 고객 리스트를 보여줘" |
-| **데이터 요약** | "지난주에 추가된 항목들 요약해줘"     |
+| Usage Scenario      | Example                                           |
+| ------------------- | ------------------------------------------------- |
+| **Work Automation** | "Show me only tasks due today"                    |
+| **CRM Query**       | "Show me the list of customers residing in Seoul" |
+| **Data Summary**    | "Summarize the items added last week"             |
