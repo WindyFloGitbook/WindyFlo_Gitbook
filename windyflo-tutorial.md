@@ -114,4 +114,4 @@ Just like this, WindyFlo helps you easily implement complex AI functionalities b
 * **Core Concepts:** Gain a deeper understanding of key concepts like Pipelines, Nodes, Chains, and Memory.
 * **Node Library:** Discover the detailed functions and settings of all available nodes.
 * **Embed as API:** Easily connect your completed AI pipeline to external services using the Embed as API feature.
-* **Tutorials:** Follow specific use case guides, such as building a document-based Q\&A bot or creating an agent using MCP.
+*
